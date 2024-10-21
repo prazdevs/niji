@@ -22,5 +22,14 @@ export default defineAppConfig({
         },
       },
     },
+    tabs: {
+      variants: {
+        variant: {
+          link: {
+            list: 'border-[var(--ui-border-accented)] px-2 py-1',
+          },
+        },
+      },
+    },
   },
 })

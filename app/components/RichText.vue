@@ -15,7 +15,7 @@ const rt = computed(() => new RichText({
 
 <template>
   <div class="whitespace-pre-wrap break-words">
-    <template v-for="segment, key of rt.segments()" :key>
+    <template v-for="segment, key in rt.segments()" :key>
       <RichTextMention
         v-if="AppBskyRichtextFacet.isMention(segment.mention)"
         :mention="segment.mention"

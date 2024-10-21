@@ -15,7 +15,7 @@
 @import "@nuxt/ui";
 
 :root {
-  --font-family-sans: 'Lexend', sans-serif;
+  --font-family-sans: Lexend, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --ui-radius: var(--radius-md);
 }
 
