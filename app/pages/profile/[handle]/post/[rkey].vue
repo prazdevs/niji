@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AppBskyEmbedImages, AppBskyFeedDefs, AppBskyFeedPost } from '@atproto/api'
+import { AppBskyEmbedImages, AppBskyFeedDefs, AppBskyFeedPost, AppBskyFeedThreadgate } from '@atproto/api'
 import { formatDate } from '@vueuse/core'
 import { joinURL } from 'ufo'
 
@@ -30,6 +30,12 @@ const { data } = await useAsyncData(async () => {
 
   return { ...post, record: post.record, replies: thread.data.thread.replies }
 })
+
+const threadgateAllow = computed(() =>
+  AppBskyFeedThreadgate.isRecord(data.value?.threadgate?.record)
+    ? data.value.threadgate.record.allow
+    : undefined,
+)
 
 const { copy: copyLink, copied: copiedLink } = useClipboard({
   source: joinURL('https://bsky.app', 'profile', route.params.handle, 'post', route.params.rkey),
@@ -111,8 +117,23 @@ whenever(copiedText, () => toast.add({
           </div>
         </div>
         <!-- date -->
-        <div class="text-sm text-[var(--ui-text-muted)]">
-          <span>{{ formatDate(new Date(data.record.createdAt), 'MMMM D, YYYY - H:mm A', { locales: 'en' }) }}</span>
+        <div class="text-sm text-[var(--ui-text-muted)] inline-flex items-center gap-3">
+          <span>{{ formatDate(new Date(data.record.createdAt), 'MMMM D, YYYY @ H:mm A', { locales: 'en' }) }}</span>
+
+          <template v-if="threadgateAllow">
+            <span v-if="threadgateAllow.length === 0" class="inline-flex items-center">
+              <UIcon name="mingcute-forbid-circle-line" class="size-4 text-[var(--ui-text-dimmed)]" />
+              {{ 'Nobody can reply' }}
+            </span>
+            <span v-else class="inline-flex items-center">
+              <UIcon name="mingcute-user-follow-2-line" class="size-4 text-[var(--ui-text-dimmed)]" />
+              {{ 'Some people can reply' }}
+            </span>
+          </template>
+          <span v-else class="inline-flex items-center gap-1">
+            <UIcon name="mingcute-world-2-line" class="size-4 text-[var(--ui-text-dimmed)]" />
+            {{ 'Everyone can reply' }}
+          </span>
         </div>
         <USeparator size="xs" />
         <!-- stats -->
