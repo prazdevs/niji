@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import type { AppBskyFeedDefs } from '@atproto/api'
+import type { AppBskyFeedDefs, AppBskyFeedGetAuthorFeed } from '@atproto/api'
 
-const { actor } = defineProps<{ actor: string }>()
+type Filter = AppBskyFeedGetAuthorFeed.QueryParams['filter']
+
+const { actor, filter } = defineProps<{ actor: string, filter?: Filter }>()
 
 const agent = useAgent()
 const cursor = ref<string | undefined>(undefined)
 const posts = ref<AppBskyFeedDefs.FeedViewPost[]>([])
 
 const { execute } = await useAsyncData(async () => {
-  const d = await agent.app.bsky.feed.getAuthorFeed({ actor, limit: 30, cursor: cursor.value })
+  const d = await agent.app.bsky.feed.getAuthorFeed({
+    actor,
+    filter,
+    limit: 30,
+    cursor: cursor.value,
+  })
 
   cursor.value = d.data.cursor
   posts.value.push(...d.data.feed)
