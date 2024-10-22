@@ -1,5 +1,9 @@
+<script setup lang="ts">
+
+</script>
+
 <template>
   <main>
-    main page
+    <Feed :feed="DEFAULT_FEED" />
   </main>
 </template>

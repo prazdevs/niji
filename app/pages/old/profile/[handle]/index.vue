@@ -2,7 +2,7 @@
 import type { TabsItem } from '@nuxt/ui'
 import { AppBskyRichtextFacet, RichText } from '@atproto/api'
 
-definePageMeta({ name: 'profile' })
+// definePageMeta({ name: 'profile' })
 
 const agent = useAgent()
 const route = useRoute('profile')

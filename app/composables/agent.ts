@@ -1,28 +1,13 @@
-// import type {AtpSessionData, AtpSessionEvent } from '@atproto/api'
-import { AtpAgent } from '@atproto/api'
+import type { AtpAgent } from '@atproto/api'
+import type { InjectionKey } from 'vue'
 
-export const useAgent = createGlobalState(() => {
-  // const { clearSession, saveSession, session } = useSession()
+export const $bsky_agent = Symbol('bsky_agent') as InjectionKey<AtpAgent>
 
-  // const agent = new AtpAgent({
-  // service: 'https://bsky.social',
-  // persistSession: (evt: AtpSessionEvent, sess?: AtpSessionData) => {
-  //   switch(evt) {
-  //     case 'create':
-  //     case 'update':
-  //       if (!sess) throw new Error('unreachable') //todo error management
-  //       saveSession(sess)
-  //       break
-  //     case 'expired':
-  //       clearSession()
-  //       break
-  //   }
-  // }
-  // })
+export function useAgent() {
+  const agent = inject($bsky_agent)
 
-  const agent = new AtpAgent({
-    service: 'https://api.bsky.app',
-  })
+  if (!agent)
+    throw createError('Failed to inject Bluesky agent.')
 
   return agent
-})
+}
