@@ -14,6 +14,9 @@ importers:
       '@atproto/api':
         specifier: ^0.13.12
         version: 0.13.12
+      '@iconify-json/fluent-emoji-flat':
+        specifier: ^1.2.1
+        version: 1.2.1
       '@iconify-json/mingcute':
         specifier: ^1.2.1
         version: 1.2.1
@@ -943,6 +946,9 @@ packages:
   '@humanwhocodes/retry@0.3.1':
     resolution: {integrity: sha512-JBxkERygn7Bv/GbN5Rv8Ul6LVknS+5Bp6RgDC/O8gEBU/yeH5Ui5C/OlWrTb6qct7LjjfT6Re2NxB0ln0yYybA==}
     engines: {node: '>=18.18'}
+
+  '@iconify-json/fluent-emoji-flat@1.2.1':
+    resolution: {integrity: sha512-rnmQzGBYDbAd/f3z0fk6Ne11yy3wRnp3BXWLi7XwddNXXXSYdIX4FE64A2g1kW2fPh3vN1goVHcj924mZgWvTA==}
 
   '@iconify-json/mingcute@1.2.1':
     resolution: {integrity: sha512-rv682dBsjKUs1/AVg5tOegAunjCLuqyQufXU0D6Kbmgg5jMoUcl/9K2C+9MAiepBP0Eyb05YwXQvGaXMLPu/YA==}
@@ -5495,6 +5501,10 @@ snapshots:
   '@humanwhocodes/module-importer@1.0.1': {}
 
   '@humanwhocodes/retry@0.3.1': {}
+
+  '@iconify-json/fluent-emoji-flat@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify-json/mingcute@1.2.1':
     dependencies:

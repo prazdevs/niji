@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+  --font-family-sans: Lexend, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-family-brand: "Lilita One", sans-serif;
+}
+
+html, body, #__nuxt {
+  margin: 0;
+  min-height: 100vh;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+button {
+  cursor: pointer;
+}
