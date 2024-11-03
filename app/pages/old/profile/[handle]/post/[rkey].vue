@@ -165,14 +165,9 @@ whenever(copiedText, () => toast.add({
             size="lg"
             :content="{ align: 'end' }"
             :items="[
-              // TODO use onSelect when fixed
-              // @ts-expect-error
               { label: 'Translate', icon: 'mingcute-translate-2-line' },
-              // @ts-expect-error
-              { label: 'Copy post text', icon: 'mingcute-clipboard-line', select: copyText },
-              // @ts-expect-error
-              { label: 'Copy link to post', icon: 'mingcute-share-3-line', select: copyLink },
-              // @ts-expect-error
+              { label: 'Copy post text', icon: 'mingcute-clipboard-line', onSelect: copyText },
+              { label: 'Copy link to post', icon: 'mingcute-share-3-line', onSelect: copyLink },
               { label: 'Embed post', icon: 'mingcute-code-line' },
             ]"
           >
